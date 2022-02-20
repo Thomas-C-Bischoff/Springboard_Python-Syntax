@@ -16,7 +16,23 @@ def convert_temp(unit_in, unit_out, temp):
     """
 
     # YOUR CODE HERE
-
+    if type(unit_in) != str or type(unit_out) != str:
+      return "Invalid, the given unit_in or unit_out is not a string"
+    else:
+      unit_in = unit_in.lower()
+      unit_out = unit_out.lower()
+      if unit_in not in ["c", "f"]:
+        return f"Invalid, the given unit_in was '{unit_in}'"
+      if unit_out not in ["c", "f"]:
+        return f"Invalid, the given unit_out was '{unit_out}'"
+    if type(temp) not in [int, float]:
+      return "Invalid, the given temp is not a number"
+    if unit_in == "f" and unit_out == "c":
+      return ((temp -32) * 5) / 9
+    elif unit_in == "c" and unit_out == "f":
+      return temp * (9 / 5) + 32
+    else:
+      return temp
 
 print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
 print("f", "c", 212, convert_temp("f", "c", 212), "should be 100.0")
